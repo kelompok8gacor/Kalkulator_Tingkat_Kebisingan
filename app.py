@@ -403,6 +403,6 @@ elif menu == "Tentang":
     st.markdown("""
         <br><hr>
         🧑‍🎓 **Tugas Akhir Mata Kuliah Logika dan Pemrograman Komputer**
-        1F Pengolahan Limbah Industri - Politeknik AKA Bogor
-        _Dikembangkan dengan Python & Streamlit._
+            1F Pengolahan Limbah Industri - Politeknik AKA Bogor
+            _Dikembangkan dengan Python & Streamlit._
     """, unsafe_allow_html=True)
