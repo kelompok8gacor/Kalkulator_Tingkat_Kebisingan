@@ -15,6 +15,36 @@ def hitung_rerata_kebisingan(teks_input):
     except ValueError:
         return None, []
 
+# Fungsi untuk menampilkan cara pencegahan
+def tampilkan_cara_pencegahan(jenis_lingkungan):
+    if jenis_lingkungan == "lingkungan kerja":
+        st.markdown("""
+        ### 🛡️ Cara Pencegahan:
+        - Gunakan **alat pelindung telinga** (earplug/earmuff) di area kerja bising.
+        - **Kurangi waktu paparan** pekerja di lingkungan dengan kebisingan tinggi.
+        - Gunakan **peredam suara** pada mesin dan ruangan kerja.
+        - Lakukan **pengaturan rotasi kerja** agar paparan tidak terus-menerus.
+        - Terapkan **pengawasan rutin** tingkat kebisingan oleh petugas K3.
+        """)
+
+    elif jenis_lingkungan == "kawasan khusus":
+        st.markdown("""
+        ### 🛡️ Cara Pencegahan:
+        - **Atur ulang tata letak** agar aktivitas bising terpisah dari publik.
+        - Gunakan **material peredam suara** pada bangunan dan kendaraan.
+        - Terapkan **jam operasional yang terjadwal** untuk aktivitas bising.
+        - Lakukan **pengawasan terhadap sumber kebisingan** seperti speaker, kendaraan, atau mesin.
+        """)
+
+    elif jenis_lingkungan == "lingkungan kegiatan":
+        st.markdown("""
+        ### 🛡️ Cara Pencegahan:
+        - **Gunakan jendela dan pintu kedap suara** untuk mengurangi kebisingan luar.
+        - **Pindahkan sumber suara** seperti TV/speaker dari dinding yang berdekatan dengan ruang istirahat.
+        - Tanam **vegetasi atau pagar hijau** sebagai penghalang suara dari jalan atau lingkungan ramai.
+        - Terapkan **jam tenang** khususnya di area sekolah, rumah sakit, dan tempat ibadah.
+        """)
+
 # Judul aplikasi
 st.markdown("""
     <h1 style='text-align: center; color: #5EFF33; animation: fadeIn 2s ease-in;'>🔊 Kalkulator Kebisingan</h1>
@@ -141,6 +171,8 @@ elif menu == "Kalkulator Lingkungan Kerja":
             else:
                 st.error(f"{rata2:.2f} dB ❌ TIDAK MEMENUHI standar SNI lingkungan kerja (> {SNI_LIMIT} dB).")
                 st.warning("**Dampak Potensial:** Dapat menyebabkan gangguan pendengaran, stres, kelelahan, dan menurunkan produktivitas kerja bila terpapar dalam waktu lama.")
+                tampilkan_cara_pencegahan("lingkungan kerja")
+
         else:
             st.error("Format input tidak valid. Pastikan hanya memasukkan angka dan koma.")
     else:
@@ -233,8 +265,9 @@ elif menu == "Kalkulator Kawasan Khusus":
                 st.success(f"{rata2:.2f} dB ✅ MEMENUHI standar SNI Kawasan Khusus (≤ {SNI_LIMIT} dB).")
                 st.info("**Keterangan:** Kebisingan dalam batas wajar pada kawasan yang ramai. Risiko terhadap kecelakaan rendah.")
             else:
-                st.error(f"{rata2:.2f} dB ❌ TIDAK MEMENUHI standar SNI lingkungan sekolah (> {SNI_LIMIT} dB).")
+                st.error(f"{rata2:.2f} dB ❌ TIDAK MEMENUHI standar SNI Kawasan Khusus (> {SNI_LIMIT} dB).")
                 st.warning("**Dampak Potensial:** Dapat mengganggu konsentrasi, menambah risiko kecelakaan yang tidak terduga, dan menambah stres.")
+                tampilkan_cara_pencegahan("kawasan khusus")
         else:
             st.error("Format input tidak valid. Pastikan hanya memasukkan angka dan koma.")
     else:
@@ -327,8 +360,9 @@ elif menu == "Kalkulator Lingkungan Kegiatan":
                 st.success(f"{rata2:.2f} dB ✅ MEMENUHI standar SNI lingkungan kegiatan (≤ {SNI_LIMIT} dB).")
                 st.info("**Keterangan:** Suasana dalam batas kebisingan yang nyaman dan aman untuk istirahat dan kegiatan lainnya.")
             else:
-                st.error(f"{rata2:.2f} dB ❌ TIDAK MEMENUHI standar SNI lingkungan rumah (> {SNI_LIMIT} dB).")
+                st.error(f"{rata2:.2f} dB ❌ TIDAK MEMENUHI standar SNI lingkungan kegiatan (> {SNI_LIMIT} dB).")
                 st.warning("**Dampak Potensial:** Dapat menyebabkan gangguan tidur dan kecemasan, tekanan darah meningkat, stres psikologis, dan penurunan kualitas hidup.")
+                tampilkan_cara_pencegahan("lingkungan kegiatan")
         else:
             st.error("Format input tidak valid. Pastikan hanya memasukkan angka dan koma.")
     else:
