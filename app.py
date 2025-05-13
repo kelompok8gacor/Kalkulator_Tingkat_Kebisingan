@@ -183,7 +183,7 @@ elif menu == "Kalkulator Kawasan Khusus":
     SNI_LIMIT = 70.0
 
     st.write("Masukkan satu atau beberapa nilai kebisingan (`dB`), pisahkan dengan koma (`,`) jika lebih dari satu data:")
-    input_data = st.text_area("Contoh: 42, 43.5, 46", "")
+    input_data = st.text_area("Contoh: 67, 66.4, 68", "")
 
     if input_data:
         rata2, semua_nilai = hitung_rerata_kebisingan(input_data)
