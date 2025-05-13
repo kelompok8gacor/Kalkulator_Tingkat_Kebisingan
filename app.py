@@ -140,7 +140,7 @@ elif menu == "Kalkulator Lingkungan Kerja":
                 pdf.savefig(fig_pdf)
                 plt.close(fig_pdf)
 
-             # Tambahkan halaman dengan ringkasan teks
+             # Tambah halaman dengan ringkasan teks
             from matplotlib.figure import Figure
             fig_text = Figure(figsize=(8.27, 11.69))  # A4 size
             ax_text = fig_text.subplots()
@@ -192,6 +192,20 @@ elif menu == "Kalkulator Kawasan Khusus":
             st.write(f"📉 Rata-rata kebisingan: **{rata2:.2f} dB**")
             import io
             from matplotlib.backends.backend_pdf import PdfPages
+
+            # Plot grafik
+            fig, ax = plt.subplots()
+            index = np.arange(len(semua_nilai))
+            ax.bar(index, semua_nilai, color='lightgreen')
+            ax.axhline(SNI_LIMIT, color='red', linestyle='--', label=f'Batas SNI ({SNI_LIMIT} dB)')
+            ax.set_xlabel('Data ke-')
+            ax.set_ylabel('Tingkat Kebisingan (dB)')
+            ax.set_title('Visualisasi Data Kebisingan Kawasan Khusus')
+            ax.set_xticks(index)
+            ax.set_xticklabels([str(i+1) for i in index])
+            ax.legend()
+            st.pyplot(fig)
+
 
             # Buat DataFrame untuk ekspor
             df = pd.DataFrame({
@@ -248,19 +262,6 @@ elif menu == "Kalkulator Kawasan Khusus":
                 mime="application/pdf"
             )
 
-            # Plot grafik
-            fig, ax = plt.subplots()
-            index = np.arange(len(semua_nilai))
-            ax.bar(index, semua_nilai, color='lightgreen')
-            ax.axhline(SNI_LIMIT, color='red', linestyle='--', label=f'Batas SNI ({SNI_LIMIT} dB)')
-            ax.set_xlabel('Data ke-')
-            ax.set_ylabel('Tingkat Kebisingan (dB)')
-            ax.set_title('Visualisasi Data Kebisingan Kawasan Khusus')
-            ax.set_xticks(index)
-            ax.set_xticklabels([str(i+1) for i in index])
-            ax.legend()
-            st.pyplot(fig)
-
             if rata2 <= SNI_LIMIT:
                 st.success(f"{rata2:.2f} dB ✅ MEMENUHI standar SNI Kawasan Khusus (≤ {SNI_LIMIT} dB).")
                 st.info("**Keterangan:** Kebisingan dalam batas wajar pada kawasan yang ramai. Risiko terhadap kecelakaan rendah.")
@@ -287,6 +288,19 @@ elif menu == "Kalkulator Lingkungan Kegiatan":
             st.write(f"📉 Rata-rata kebisingan: **{rata2:.2f} dB**")
             import io
             from matplotlib.backends.backend_pdf import PdfPages
+
+            # Plot grafik
+            fig, ax = plt.subplots()
+            index = np.arange(len(semua_nilai))
+            ax.bar(index, semua_nilai, color='orange')
+            ax.axhline(SNI_LIMIT, color='red', linestyle='--', label=f'Batas SNI ({SNI_LIMIT} dB)')
+            ax.set_xlabel('Data ke-')
+            ax.set_ylabel('Tingkat Kebisingan (dB)')
+            ax.set_title('Visualisasi Data Kebisingan Rumah')
+            ax.set_xticks(index)
+            ax.set_xticklabels([str(i+1) for i in index])
+            ax.legend()
+            st.pyplot(fig)
 
             # Buat DataFrame
             df = pd.DataFrame({
@@ -342,19 +356,6 @@ elif menu == "Kalkulator Lingkungan Kegiatan":
                 file_name="laporan_kebisingan_lingkungan_kegiatan.pdf",
                 mime="application/pdf"
             )
-
-            # Plot grafik
-            fig, ax = plt.subplots()
-            index = np.arange(len(semua_nilai))
-            ax.bar(index, semua_nilai, color='orange')
-            ax.axhline(SNI_LIMIT, color='red', linestyle='--', label=f'Batas SNI ({SNI_LIMIT} dB)')
-            ax.set_xlabel('Data ke-')
-            ax.set_ylabel('Tingkat Kebisingan (dB)')
-            ax.set_title('Visualisasi Data Kebisingan Rumah')
-            ax.set_xticks(index)
-            ax.set_xticklabels([str(i+1) for i in index])
-            ax.legend()
-            st.pyplot(fig)
 
             if rata2 <= SNI_LIMIT:
                 st.success(f"{rata2:.2f} dB ✅ MEMENUHI standar SNI lingkungan kegiatan (≤ {SNI_LIMIT} dB).")
