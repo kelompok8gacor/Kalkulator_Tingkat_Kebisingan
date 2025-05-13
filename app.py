@@ -34,9 +34,9 @@ menu = st.sidebar.selectbox(
     "Pilih Menu",
     [
         "Beranda",
-        "Kalkulator Kebisingan Umum",
-        "Kalkulator Kebisingan Sekolah",
-        "Kalkulator Kebisingan Rumah",
+        "Kalkulator Lingkungan Kerja",
+        "Kalkulator Kawasan Khusus",
+        "Kalkulator Lingkungan Kegiatan",
         "Tentang",
     ],
 )
@@ -46,13 +46,13 @@ if menu == "Beranda":
     st.write("""
         Aplikasi ini digunakan untuk mengevaluasi apakah tingkat kebisingan memenuhi standar SNI di berbagai lingkungan:
         - **Umum / Lingkungan Kerja**: Maks. 85 dB
-        - **Sekolah**: Maks. 45 dB
-        - **Rumah**: Maks. 55 dB
+        - **Kawasan Khusus**: Maks. 70 dB
+        - **Lingkungan Kegiatan**: Maks. 55 dB
     """)
     st.image("https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExYTdndHhjOGo3eHpjbGxxMGp1cm0wamU2MG4xbXV6bjdha3JtMXplZCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/5mYcsVrgxtxt7QUc55/giphy.gif", use_container_width=True)
 
-elif menu == "Kalkulator Kebisingan Umum":
-    st.subheader("Kalkulator Kebisingan Lingkungan Kerja / Umum")
+elif menu == "Kalkulator Lingkungan Kerja":
+    st.subheader("Kalkulator Kebisingan untuk Lingkungan Kerja")
     SNI_LIMIT = 85.0
 
     st.write("Masukkan satu atau beberapa nilai kebisingan (`dB`), pisahkan dengan koma (`,`) jika lebih dari satu data:")
@@ -91,7 +91,7 @@ elif menu == "Kalkulator Kebisingan Umum":
             st.download_button(
                 label="📥 Unduh Data sebagai CSV",
                 data=csv_buffer.getvalue(),
-                file_name="data_kebisingan_umum.csv",
+                file_name="data_kebisingan_lingkungan_kerja.csv",
                 mime="text/csv"
             )
 
@@ -101,7 +101,7 @@ elif menu == "Kalkulator Kebisingan Umum":
                 fig_pdf, ax_pdf = plt.subplots()
                 ax_pdf.bar(range(len(semua_nilai)), semua_nilai, color='skyblue')
                 ax_pdf.axhline(SNI_LIMIT, color='red', linestyle='--', label=f'Batas SNI ({SNI_LIMIT} dB)')
-                ax_pdf.set_title('Grafik Kebisingan - Lingkungan Umum')
+                ax_pdf.set_title('Grafik Kebisingan - Lingkungan Kerja')
                 ax_pdf.set_xlabel('Data ke-')
                 ax_pdf.set_ylabel('dB')
                 ax_pdf.set_xticks(range(len(semua_nilai)))
@@ -116,7 +116,7 @@ elif menu == "Kalkulator Kebisingan Umum":
             ax_text = fig_text.subplots()
             ax_text.axis('off')
             summary = (
-                f"📄 Ringkasan Analisis Kebisingan\n\n"
+                f"📄 Ringkasan Analisis Kebisingan Lingkungan Kerja\n\n"
                 f"Jumlah Data: {len(semua_nilai)}\n"
                 f"Rata-rata: {rata2:.2f} dB\n"
                 f"Standar Batas SNI: {SNI_LIMIT} dB\n"
@@ -130,7 +130,7 @@ elif menu == "Kalkulator Kebisingan Umum":
             st.download_button(
                 label="📄 Unduh Laporan PDF",
                 data=pdf_buffer.getvalue(),
-                file_name="laporan_kebisingan_umum.pdf",
+                file_name="laporan_kebisingan_lingkungan_kerja.pdf",
                 mime="application/pdf"
             )
 
@@ -146,9 +146,9 @@ elif menu == "Kalkulator Kebisingan Umum":
     else:
         st.info("Silakan masukkan nilai tingkat kebisingan terlebih dahulu.")
 
-elif menu == "Kalkulator Kebisingan Sekolah":
-    st.subheader("Kalkulator Kebisingan Lingkungan Sekolah")
-    SNI_LIMIT = 45.0
+elif menu == "Kalkulator Kawasan Khusus":
+    st.subheader("Kalkulator Kebisingan untuk kawasan perdagangan, tempat rekreasi, bandara, stasiun, terminal, pelabuhan dan sejenisnya")
+    SNI_LIMIT = 70.0
 
     st.write("Masukkan satu atau beberapa nilai kebisingan (`dB`), pisahkan dengan koma (`,`) jika lebih dari satu data:")
     input_data = st.text_area("Contoh: 42, 43.5, 46", "")
@@ -173,7 +173,7 @@ elif menu == "Kalkulator Kebisingan Sekolah":
             st.download_button(
                 label="📥 Unduh Data sebagai CSV",
                 data=csv_buffer.getvalue(),
-                file_name="data_kebisingan_sekolah.csv",
+                file_name="data_kebisingan_kawasan_khusus.csv",
                 mime="text/csv"
             )
 
@@ -183,7 +183,7 @@ elif menu == "Kalkulator Kebisingan Sekolah":
                 fig_pdf, ax_pdf = plt.subplots()
                 ax_pdf.bar(range(len(semua_nilai)), semua_nilai, color='lightgreen')
                 ax_pdf.axhline(SNI_LIMIT, color='red', linestyle='--', label=f'Batas SNI ({SNI_LIMIT} dB)')
-                ax_pdf.set_title('Grafik Kebisingan - Lingkungan Sekolah')
+                ax_pdf.set_title('Grafik Kebisingan - Kawasan Khusus')
                 ax_pdf.set_xlabel('Data ke-')
                 ax_pdf.set_ylabel('dB')
                 ax_pdf.set_xticks(range(len(semua_nilai)))
@@ -198,7 +198,7 @@ elif menu == "Kalkulator Kebisingan Sekolah":
                 ax_text = fig_text.subplots()
                 ax_text.axis('off')
                 summary = (
-                    f"📄 Ringkasan Analisis Kebisingan Sekolah\n\n"
+                    f"📄 Ringkasan Analisis Kebisingan Kawasan Khusus\n\n"
                     f"Jumlah Data: {len(semua_nilai)}\n"
                     f"Rata-rata: {rata2:.2f} dB\n"
                     f"Standar Batas SNI: {SNI_LIMIT} dB\n"
@@ -212,7 +212,7 @@ elif menu == "Kalkulator Kebisingan Sekolah":
             st.download_button(
                 label="📄 Unduh Laporan PDF",
                 data=pdf_buffer.getvalue(),
-                file_name="laporan_kebisingan_sekolah.pdf",
+                file_name="laporan_kebisingan_kawasan_khusus.pdf",
                 mime="application/pdf"
             )
 
@@ -223,25 +223,25 @@ elif menu == "Kalkulator Kebisingan Sekolah":
             ax.axhline(SNI_LIMIT, color='red', linestyle='--', label=f'Batas SNI ({SNI_LIMIT} dB)')
             ax.set_xlabel('Data ke-')
             ax.set_ylabel('Tingkat Kebisingan (dB)')
-            ax.set_title('Visualisasi Data Kebisingan Sekolah')
+            ax.set_title('Visualisasi Data Kebisingan Kawasan Khusus')
             ax.set_xticks(index)
             ax.set_xticklabels([str(i+1) for i in index])
             ax.legend()
             st.pyplot(fig)
 
             if rata2 <= SNI_LIMIT:
-                st.success(f"{rata2:.2f} dB ✅ MEMENUHI standar SNI lingkungan sekolah (≤ {SNI_LIMIT} dB).")
-                st.info("**Keterangan:** Kebisingan dalam batas wajar untuk proses belajar. Konsentrasi siswa tetap terjaga.")
+                st.success(f"{rata2:.2f} dB ✅ MEMENUHI standar SNI Kawasan Khusus (≤ {SNI_LIMIT} dB).")
+                st.info("**Keterangan:** Kebisingan dalam batas wajar pada kawasan yang ramai. Risiko terhadap kecelakaan rendah.")
             else:
                 st.error(f"{rata2:.2f} dB ❌ TIDAK MEMENUHI standar SNI lingkungan sekolah (> {SNI_LIMIT} dB).")
-                st.warning("**Dampak Potensial:** Dapat mengganggu konsentrasi, menurunkan performa belajar, dan menambah stres bagi siswa dan guru.")
+                st.warning("**Dampak Potensial:** Dapat mengganggu konsentrasi, menambah risiko kecelakaan yang tidak terduga, dan menambah stres.")
         else:
             st.error("Format input tidak valid. Pastikan hanya memasukkan angka dan koma.")
     else:
         st.info("Silakan masukkan nilai tingkat kebisingan terlebih dahulu.")
 
-elif menu == "Kalkulator Kebisingan Rumah":
-    st.subheader("Kalkulator Kebisingan Lingkungan Rumah")
+elif menu == "Kalkulator Lingkungan Kegiatan":
+    st.subheader("Kalkulator Kebisingan untuk lingkungan rumah, sekolah, rumah sakit, tempat ibadah dan sejenisnya")
     SNI_LIMIT = 55.0
 
     st.write("Masukkan satu atau beberapa nilai kebisingan (`dB`), pisahkan dengan koma (`,`) jika lebih dari satu data:")
@@ -267,7 +267,7 @@ elif menu == "Kalkulator Kebisingan Rumah":
             st.download_button(
                 label="📥 Unduh Data sebagai CSV",
                 data=csv_buffer.getvalue(),
-                file_name="data_kebisingan_rumah.csv",
+                file_name="data_kebisingan_lingkungan_kegiatan.csv",
                 mime="text/csv"
             )
 
@@ -277,7 +277,7 @@ elif menu == "Kalkulator Kebisingan Rumah":
                 fig_pdf, ax_pdf = plt.subplots()
                 ax_pdf.bar(range(len(semua_nilai)), semua_nilai, color='lightcoral')
                 ax_pdf.axhline(SNI_LIMIT, color='red', linestyle='--', label=f'Batas SNI ({SNI_LIMIT} dB)')
-                ax_pdf.set_title('Grafik Kebisingan - Lingkungan Rumah')
+                ax_pdf.set_title('Grafik Kebisingan - Lingkungan Kegiatan')
                 ax_pdf.set_xlabel('Data ke-')
                 ax_pdf.set_ylabel('dB')
                 ax_pdf.set_xticks(range(len(semua_nilai)))
@@ -292,7 +292,7 @@ elif menu == "Kalkulator Kebisingan Rumah":
                 ax_text = fig_text.subplots()
                 ax_text.axis('off')
                 summary = (
-                    f"📄 Ringkasan Analisis Kebisingan Rumah\n\n"
+                    f"📄 Ringkasan Analisis Kebisingan Lingkungan Kegiatan\n\n"
                     f"Jumlah Data: {len(semua_nilai)}\n"
                     f"Rata-rata: {rata2:.2f} dB\n"
                     f"Standar Batas SNI: {SNI_LIMIT} dB\n"
@@ -306,7 +306,7 @@ elif menu == "Kalkulator Kebisingan Rumah":
             st.download_button(
                 label="📄 Unduh Laporan PDF",
                 data=pdf_buffer.getvalue(),
-                file_name="laporan_kebisingan_rumah.pdf",
+                file_name="laporan_kebisingan_lingkungan_kegiatan.pdf",
                 mime="application/pdf"
             )
 
@@ -324,11 +324,11 @@ elif menu == "Kalkulator Kebisingan Rumah":
             st.pyplot(fig)
 
             if rata2 <= SNI_LIMIT:
-                st.success(f"{rata2:.2f} dB ✅ MEMENUHI standar SNI lingkungan rumah (≤ {SNI_LIMIT} dB).")
-                st.info("**Keterangan:** Suasana rumah dalam batas kebisingan yang nyaman dan aman untuk istirahat.")
+                st.success(f"{rata2:.2f} dB ✅ MEMENUHI standar SNI lingkungan kegiatan (≤ {SNI_LIMIT} dB).")
+                st.info("**Keterangan:** Suasana dalam batas kebisingan yang nyaman dan aman untuk istirahat dan kegiatan lainnya.")
             else:
                 st.error(f"{rata2:.2f} dB ❌ TIDAK MEMENUHI standar SNI lingkungan rumah (> {SNI_LIMIT} dB).")
-                st.warning("**Dampak Potensial:** Dapat menyebabkan gangguan tidur, tekanan darah meningkat, stres psikologis, dan penurunan kualitas hidup.")
+                st.warning("**Dampak Potensial:** Dapat menyebabkan gangguan tidur dan kecemasan, tekanan darah meningkat, stres psikologis, dan penurunan kualitas hidup.")
         else:
             st.error("Format input tidak valid. Pastikan hanya memasukkan angka dan koma.")
     else:
@@ -348,25 +348,13 @@ elif menu == "Tentang":
     with col1:
         st.markdown("**Lingkungan Kerja / Umum**  \nSNI 7231:2009 - Metoda Pengukuran Intensitas Kebisingan di Tempat Kerja")
     with col2:
-        st.link_button("🌐 Lihat SNI", "https://pustan.bsn.go.id/SNI/Detail/7226")
+        st.link_button("🌐 Lihat referensi", "https://jdih.kemnaker.go.id/asset/data_puu/Permen_5_2018.pdf")
 
     col3, col4 = st.columns([0.7, 0.3])
     with col3:
-        st.markdown("**Lingkungan Sekolah**  \nSNI 03-6386-2000 - Spesifikasi Tingkat Bunyi dan Waktu Dengung dalam Bangunan Gedung dan Perumahan")
+        st.markdown("**Kawasan Khusus dan Lingkungan Kegiatan**  \nSNI 03-6386-2000 - Spesifikasi Tingkat Bunyi dan Waktu Dengung dalam Bangunan Gedung dan Perumahan")
     with col4:
-        st.link_button("🌐 Lihat SNI", "https://pustan.bsn.go.id/SNI/Detail/1726")
-
-    col5, col6 = st.columns([0.7, 0.3])
-    with col5:
-        st.markdown("**Lingkungan Rumah**  \nSNI 8427:2017 - Pengukuran Tingkat Kebisingan Lingkungan")
-    with col6:
-        st.link_button("🌐 Lihat SNI", "https://pustan.bsn.go.id/SNI/Detail/11359")
-
-    col7, col8 = st.columns([0.7, 0.3])
-    with col7:
-        st.markdown("**Peraturan Menteri Ketenagakerjaan RI**  \nPermenaker No. 5 Tahun 2018 tentang Keselamatan dan Kesehatan Kerja Lingkungan Kerja")
-    with col8:
-        st.link_button("📄 Buka PDF", "https://jdih.kemnaker.go.id/asset/data_puu/Permen_5_2018.pdf")
+        st.link_button("🌐 Lihat referensi", "https://ppkl.menlhk.go.id/website/filebox/723/190930165749Kepmen%20LH%2048%20Tahun%201996.pdf")
 
     st.markdown("""
         <br><hr>
