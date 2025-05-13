@@ -391,15 +391,18 @@ elif menu == "Tentang":
     with col4:
         st.link_button("🌐 Lihat referensi", "https://ppkl.menlhk.go.id/website/filebox/723/190930165749Kepmen%20LH%2048%20Tahun%201996.pdf")
 
+    st.subheader("👨‍💻 Anggota Tim Pengembang")
+    st.markdown("""
+    - Adisti Naisyafiani Putri  
+    - Dimas Nurhadyan Ardhi Wibowo  
+    - Mazaya Tuffahati Alhanuna Suhadi  
+    - Naura Karina Azizah  
+    - Satria Naufal Hibrizi  
+    """)
+
     st.markdown("""
         <br><hr>
-        🧑‍🎓 **Tugas Akhir Mata Kuliah Logika dan Pemrograman Komputer
+        🧑‍🎓 **Tugas Akhir Mata Kuliah Logika dan Pemrograman Komputer**
         1F Pengolahan Limbah Industri - Politeknik AKA Bogor
-        Anggota tim Pengembang:
-        Adisti Naisyafani Putri
-        Dimas Nurhadyan Ardhi Wibowo
-        Mazaya Tuffahati Alhanuna Suhadi
-        Naura Karina Azizah
-        Satria Naufal Hibrizi
         _Dikembangkan dengan Python & Streamlit._
     """, unsafe_allow_html=True)
