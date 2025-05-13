@@ -336,17 +336,41 @@ elif menu == "Kalkulator Kebisingan Rumah":
 
 elif menu == "Tentang":
     st.subheader("Tentang Aplikasi")
-    st.write("""
+    st.write(
+        """
         Aplikasi ini membantu mengevaluasi tingkat kebisingan di berbagai lingkungan berdasarkan Standar Nasional Indonesia (SNI).
+        """
+    )
 
-        **Referensi Standar:**
-        - **Lingkungan Kerja / Umum**: SNI 7231:2009 - Metoda Pengukuran Intensitas Kebisingan di Tempat Kerja
-        - **Lingkungan Sekolah**: SNI 03-6386-2000 - Spesifikasi Tingkat Bunyi dan Waktu Dengung dalam Bangunan Gedung dan Perumahan
-        - **Lingkungan Rumah**: SNI 8427:2017 - Pengukuran Tingkat Kebisingan Lingkungan
+    st.markdown("### 📚 Referensi Standar Resmi:")
 
-        Tugas Akhir Mata Kuliah Logika dan Pemrograman Komputer  
-        1F Pengolahan Limbah Industri - Politeknik AKA Bogor
+    col1, col2 = st.columns([0.7, 0.3])
+    with col1:
+        st.markdown("**Lingkungan Kerja / Umum**  \nSNI 7231:2009 - Metoda Pengukuran Intensitas Kebisingan di Tempat Kerja")
+    with col2:
+        st.link_button("🌐 Lihat SNI", "https://pustan.bsn.go.id/SNI/Detail/7226")
 
+    col3, col4 = st.columns([0.7, 0.3])
+    with col3:
+        st.markdown("**Lingkungan Sekolah**  \nSNI 03-6386-2000 - Spesifikasi Tingkat Bunyi dan Waktu Dengung dalam Bangunan Gedung dan Perumahan")
+    with col4:
+        st.link_button("🌐 Lihat SNI", "https://pustan.bsn.go.id/SNI/Detail/1726")
+
+    col5, col6 = st.columns([0.7, 0.3])
+    with col5:
+        st.markdown("**Lingkungan Rumah**  \nSNI 8427:2017 - Pengukuran Tingkat Kebisingan Lingkungan")
+    with col6:
+        st.link_button("🌐 Lihat SNI", "https://pustan.bsn.go.id/SNI/Detail/11359")
+
+    col7, col8 = st.columns([0.7, 0.3])
+    with col7:
+        st.markdown("**Peraturan Menteri Ketenagakerjaan RI**  \nPermenaker No. 5 Tahun 2018 tentang Keselamatan dan Kesehatan Kerja Lingkungan Kerja")
+    with col8:
+        st.link_button("📄 Buka PDF", "https://jdih.kemnaker.go.id/asset/data_puu/Permen_5_2018.pdf")
+
+    st.markdown("""
+        <br><hr>
+        🧑‍🎓 **Tugas Akhir Mata Kuliah Logika dan Pemrograman Komputer**  
+        1F Pengolahan Limbah Industri - Politeknik AKA Bogor  
         _Dikembangkan dengan Python & Streamlit._
-    """)
-
+    """, unsafe_allow_html=True)
