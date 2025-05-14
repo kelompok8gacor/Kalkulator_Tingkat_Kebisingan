@@ -58,7 +58,7 @@ st.markdown("""
         }
     </style>
 """, unsafe_allow_html=True)
-st.salahnih
+
 
 # Sidebar menu
 menu = st.sidebar.selectbox(
