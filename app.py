@@ -14,6 +14,26 @@ def hitung_rerata_kebisingan(teks_input):
             return None, []
     except ValueError:
         return None, []
+# Fungsi untuk mengambil animasi Lottie dari URL
+def load_lottie_url(url):
+    r = requests.get(url)
+    if r.status_code != 200:
+        return None
+    return r.json()
+
+# Atau dari file lokal
+def load_lottie_file(filepath):
+    with open(filepath, "r") as f:
+        return json.load(f)
+
+st.title("Contoh Lottie di Streamlit")
+
+# Contoh dari URL
+lottie_url = "https://assets5.lottiefiles.com/packages/lf20_ydo1amjm.json"
+lottie_json = load_lottie_url(lottie_url)
+
+# Tampilkan animasi
+st_lottie(lottie_json, height=300, key="hello")
 
 # Fungsi untuk menampilkan cara pencegahan
 def tampilkan_cara_pencegahan(jenis_lingkungan):
