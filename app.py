@@ -18,7 +18,7 @@ def hitung_rerata_kebisingan(teks_input):
 # Fungsi untuk menampilkan cara pencegahan
 def tampilkan_cara_pencegahan(jenis_lingkungan):
     if jenis_lingkungan == "lingkungan kerja":
-        st.markdown("""
+        st.markdrown("""
         ### 🛡️ Cara Pencegahan:
         - Gunakan **alat pelindung telinga** (earplug/earmuff) di area kerja bising.
         - **Kurangi waktu paparan** pekerja di lingkungan dengan kebisingan tinggi.
